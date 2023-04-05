@@ -1,9 +1,6 @@
 package microservice.msscbeerservice.web.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,6 +11,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Data
+//@Getter(lazy = true) for expensive operation. Will calculate and cache the value. Any additional get, will be read from cache
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
