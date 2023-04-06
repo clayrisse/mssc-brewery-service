@@ -1,0 +1,44 @@
+# Java Maven CircleCI 2.0 configuration file
+#
+# check https://cicleci.com/docs/2.0/langiage-java/ for more details
+#
+version : 2
+jobs:
+  build:
+    docker:
+      # specify the vertion uou desire here
+      - image: circleci/openjdk:8-jdk
+
+
+      # Specify service dependencies jhere if necessary
+      # CicleCI maintains a library of pre-build images
+      # document at https://cicleci.com/docs/2.0/cicleci-images/
+      # -image: cicleci/postgrades:9.4
+
+    working_directory: ~/repo
+
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx3200m
+
+    steps:
+      - checkout
+
+      @Download and cache dependencies
+      - restore_cache:
+        keys:
+          - v1-dependencies-{{ checksum "pom.xml" }}
+          # fallback to usin the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          mvn dependency:go_offline
+
+      - save_cache:
+          paths:
+            - ~/.2
+          keys: v1-dependencies-{{checksum "pom.xml"}}
+
+      #run test
+      - run: mvn integration-test
+
