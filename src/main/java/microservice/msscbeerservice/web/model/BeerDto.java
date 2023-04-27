@@ -1,5 +1,6 @@
 package microservice.msscbeerservice.web.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -23,10 +24,13 @@ public class BeerDto {
     @Null //defensive coding!, these are read only properties we do the in case a malicious actor tries to set this properties
     private Integer version;
 
+
     @Null //defensive coding!, these are read only properties we do the in case a malicious actor tries to set this properties
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
     private OffsetDateTime createDate;
 
     @Null //defensive coding!, these are read only properties we do the in case a malicious actor tries to set this properties
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ", shape = JsonFormat.Shape.STRING)
     private OffsetDateTime lastModifiedDate;
 
     @NotBlank
@@ -38,6 +42,7 @@ public class BeerDto {
     @NotNull @Positive
     private Long upc;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     @NotNull @Positive
     private BigDecimal price;
 
