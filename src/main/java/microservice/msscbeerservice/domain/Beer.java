@@ -34,10 +34,11 @@ public class Beer {
     @UpdateTimestamp
     private Timestamp lastModifiedDate;
 
-    @Column(unique = true)
     private String beerName;
     private String beerStyle;
-    private Long upc;
+
+    @Column(unique = true)
+    private String upc;
     private BigDecimal price;
 
     private Integer minOnHand;
